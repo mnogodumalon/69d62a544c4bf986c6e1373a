@@ -76,6 +76,33 @@ function isOverdue(dateStr: string | undefined): boolean {
   return new Date(dateStr) < new Date();
 }
 
+function WorkflowNav() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <a href="#/intents/ausruestung-ausgeben" className="bg-card border border-border border-l-4 border-l-primary rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4 min-w-0">
+        <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+          <IconPackage size={22} className="text-primary" stroke={1.5} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-sm truncate">Ausrüstung ausgeben</div>
+          <div className="text-xs text-muted-foreground truncate">Personal auswählen &amp; Ausrüstung zuweisen</div>
+        </div>
+        <IconChevronRight size={18} className="text-muted-foreground flex-shrink-0" stroke={1.5} />
+      </a>
+      <a href="#/intents/wartung-planen" className="bg-card border border-border border-l-4 border-l-primary rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4 min-w-0">
+        <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+          <IconTool size={22} className="text-primary" stroke={1.5} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-sm truncate">Wartung planen</div>
+          <div className="text-xs text-muted-foreground truncate">Ausrüstung prüfen &amp; Wartungsprotokoll anlegen</div>
+        </div>
+        <IconChevronRight size={18} className="text-muted-foreground flex-shrink-0" stroke={1.5} />
+      </a>
+    </div>
+  );
+}
+
 export default function DashboardOverview() {
   const {
     ausruestungszuweisung, personal, wartungsprotokoll, ausruestungskatalog,
@@ -178,6 +205,7 @@ export default function DashboardOverview() {
 
   return (
     <div className="space-y-6">
+      <WorkflowNav />
       {/* KPI Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
