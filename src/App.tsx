@@ -1,4 +1,3 @@
-import { lazy, Suspense } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ActionsProvider } from '@/context/ActionsContext';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -9,13 +8,8 @@ import AusruestungszuweisungPage from '@/pages/AusruestungszuweisungPage';
 import PersonalPage from '@/pages/PersonalPage';
 import WartungsprotokollPage from '@/pages/WartungsprotokollPage';
 import AusruestungskatalogPage from '@/pages/AusruestungskatalogPage';
-import PublicFormAusruestungszuweisung from '@/pages/public/PublicForm_Ausruestungszuweisung';
-import PublicFormPersonal from '@/pages/public/PublicForm_Personal';
-import PublicFormWartungsprotokoll from '@/pages/public/PublicForm_Wartungsprotokoll';
-import PublicFormAusruestungskatalog from '@/pages/public/PublicForm_Ausruestungskatalog';
-
-const AusruestungAusgebenPage = lazy(() => import('@/pages/intents/AusruestungAusgebenPage'));
-const WartungPlanenPage = lazy(() => import('@/pages/intents/WartungPlanenPage'));
+// <custom:imports>
+// </custom:imports>
 
 export default function App() {
   return (
@@ -23,10 +17,6 @@ export default function App() {
       <HashRouter>
         <ActionsProvider>
           <Routes>
-            <Route path="public/69d62a2f6a108637ddd7d432" element={<PublicFormAusruestungszuweisung />} />
-            <Route path="public/69d62a28bb93020197f8c86d" element={<PublicFormPersonal />} />
-            <Route path="public/69d62a2f27cfcd7bad02c882" element={<PublicFormWartungsprotokoll />} />
-            <Route path="public/69d62a2e5ffe309d11c11a2d" element={<PublicFormAusruestungskatalog />} />
             <Route element={<Layout />}>
               <Route index element={<DashboardOverview />} />
               <Route path="ausruestungszuweisung" element={<AusruestungszuweisungPage />} />
@@ -34,8 +24,8 @@ export default function App() {
               <Route path="wartungsprotokoll" element={<WartungsprotokollPage />} />
               <Route path="ausruestungskatalog" element={<AusruestungskatalogPage />} />
               <Route path="admin" element={<AdminPage />} />
-              <Route path="intents/ausruestung-ausgeben" element={<Suspense fallback={null}><AusruestungAusgebenPage /></Suspense>} />
-              <Route path="intents/wartung-planen" element={<Suspense fallback={null}><WartungPlanenPage /></Suspense>} />
+              {/* <custom:routes> */}
+              {/* </custom:routes> */}
             </Route>
           </Routes>
         </ActionsProvider>

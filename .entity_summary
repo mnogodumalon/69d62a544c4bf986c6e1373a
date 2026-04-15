@@ -1,7 +1,0 @@
-- Ausrüstungszuweisung (ausruestungszuweisung): zugewiesenes_personal[applookup/select], zugewiesene_ausruestung[applookup/select], ausgabedatum[date/date], rueckgabedatum[date/date], status_zuweisung[lookup/radio], ausgabe_menge[number], unterschrift_empfaenger[file], bemerkungen_zuweisung[string/textarea]
-  → zugewiesenes_personal links to app_id 69d62a28bb93020197f8c86d
-  → zugewiesene_ausruestung links to app_id 69d62a2e5ffe309d11c11a2d
-- Personal (personal): personalnummer[string/text], vorname[string/text], nachname[string/text], dienstgrad[lookup/select], einheit[string/text], standort[string/text], telefon[string/tel], email[string/email], eintrittsdatum[date/date], bemerkungen_personal[string/textarea]
-- Wartungsprotokoll (wartungsprotokoll): gewartete_ausruestung[applookup/select], wartungsart[lookup/select], wartungsdatum[date/date], naechste_wartung[date/date], techniker_vorname[string/text], techniker_nachname[string/text], ergebnis[lookup/radio], kosten_wartung[number], wartungsbericht[file], bemerkungen_wartung[string/textarea]
-  → gewartete_ausruestung links to app_id 69d62a2e5ffe309d11c11a2d
-- Ausrüstungskatalog (ausruestungskatalog): artikel_bezeichnung[string/text], seriennummer[string/text], kategorie[lookup/select], hersteller[string/text], modell[string/text], zustand[lookup/radio], beschaffungsdatum[date/date], beschaffungskosten[number], lagerort[string/text], menge[number], foto_ausruestung[file], bemerkungen_ausruestung[string/textarea]
