@@ -10,7 +10,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { StatCard } from '@/components/StatCard';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import {
   IconAlertCircle,
@@ -166,15 +165,10 @@ export default function DashboardOverview() {
     });
   }, [enrichedWartungsprotokoll, selectedKatalogId]);
 
-  // KPI stats
-  const ausgegeben = ausruestungszuweisung.filter(z => z.fields.status_zuweisung?.key === 'ausgegeben').length;
+  // Alert stats
   const verloren = ausruestungszuweisung.filter(z => z.fields.status_zuweisung?.key === 'verloren').length;
   const ueberfaelligeRueckgaben = ausruestungszuweisung.filter(
     z => z.fields.status_zuweisung?.key === 'ausgegeben' && isOverdue(z.fields.rueckgabedatum)
-  ).length;
-  const anstehendeWartungen = wartungsprotokoll.filter(
-    w => w.fields.naechste_wartung && !isOverdue(w.fields.naechste_wartung) &&
-      new Date(w.fields.naechste_wartung) <= new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
   ).length;
 
   // Handlers
@@ -206,34 +200,6 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-6">
       <WorkflowNav />
-      {/* KPI Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatCard
-          title="Ausrüstungsartikel"
-          value={String(ausruestungskatalog.length)}
-          description="Im Katalog"
-          icon={<IconPackage size={18} className="text-muted-foreground" />}
-        />
-        <StatCard
-          title="Ausgegeben"
-          value={String(ausgegeben)}
-          description="Aktive Zuweisungen"
-          icon={<IconUsers size={18} className="text-muted-foreground" />}
-        />
-        <StatCard
-          title="Überfällige Rückgaben"
-          value={String(ueberfaelligeRueckgaben)}
-          description={ueberfaelligeRueckgaben > 0 ? 'Bitte prüfen' : 'Alles OK'}
-          icon={<IconAlertTriangle size={18} className={ueberfaelligeRueckgaben > 0 ? 'text-orange-500' : 'text-muted-foreground'} />}
-        />
-        <StatCard
-          title="Wartungen fällig"
-          value={String(anstehendeWartungen)}
-          description="In den nächsten 30 Tagen"
-          icon={<IconTool size={18} className={anstehendeWartungen > 0 ? 'text-yellow-500' : 'text-muted-foreground'} />}
-        />
-      </div>
-
       {/* Alerts */}
       {(ueberfaelligeRueckgaben > 0 || verloren > 0) && (
         <div className="flex flex-col sm:flex-row gap-2">
